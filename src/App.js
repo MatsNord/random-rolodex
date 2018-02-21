@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { getSeededData } from './api';
-//import {Contact} from './components/contact';
+import { getSeededData, getContacts } from './api';
 import * as Details from './components/contact/details';
 import Card from './components/contact/card';
 import './App.css';
@@ -8,26 +7,26 @@ import './App.css';
 class App extends Component {
   
   state = {
-    person: null
+    persons: []
    }
 
   loadData = () =>{
-    getSeededData('foo').then(data => {
+    getContacts().then(data => {
       console.info("seeded data...", data[0]);
-      const person = data[0];
-      this.setState({ person: person })
+      const persons = data;
+      this.setState({ persons: persons })
     });
   };
 
-  // componentWillMount() {
-  //   getSeededData('foo').then(data => {
-  //     console.info("seeded data...", data[0]);
-  //     const person = data[0];
-  //     this.setState({ name: `${person.name.first} ${person.name.last}`, email: person.email })
-  //   });
-  // }
+  componentWillMount() {
+    getContacts().then(data => {
+      console.info("seeded data...", data[0]);
+      const persons = data;
+      this.setState({ persons: persons })
+    });
+  }
   render() {
-    const { person } = this.state;
+    const { persons } = this.state;
     return (
       <div className="App">
         <div>
@@ -36,11 +35,9 @@ class App extends Component {
           >
             PRESS YUO!
           </button>
-        
-          <Details.Name name={person ? person.name : null} />
-          <Details.Phone landline={person ? person.phone : null} />
-          <Details.Phone cell={person ? person.cell : null} />
-          { person ? <Card person={person} /> : null }
+        </div>
+        <div class="items">
+        { persons.map( (person, idx) =>  <Card person={person} /> ) }
         </div>
       </div>
     );

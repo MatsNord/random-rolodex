@@ -1,13 +1,8 @@
 import React from 'react';
 // Component to display phonenumbers
-const Phone = ( {landline, cell} ) => {
-  const lNbr = landline ? <div>{landline}</div> : null;
-  const cNbr = cell ? <div>{cell}</div> : null;
+const Phone = ( {number} ) => {
   return (
-    <div>
-      <div>{lNbr}</div>
-      <div>{cNbr}</div>
-    </div>
+      <div class="phone">{number}</div>
     );
 };
 export default Phone;
