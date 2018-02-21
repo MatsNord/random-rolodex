@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
-import { getSeededData } from './api';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import {orange500, deepOrange500, grey50} from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'; // add
+import RaisedButton from 'material-ui/RaisedButton'; // add
+import { getSeededData, getContacts } from './api';
 //import {Contact} from './components/contact';
-import * as Details from './components/contact/details';
+//import * as Details from './components/contact/details';
 import Card from './components/contact/card';
+import MCard from './components/contact/mcard';
+import './index.css';
+
+
 import './App.css';
+
+const muiTheme = getMuiTheme({
+  palette: { 
+    primary1Color: orange500, 
+    accent1Color: deepOrange500,
+    textColor: deepOrange500,
+    canvasColor: grey50
+    }}
+  );
+
 
 class App extends Component {
   
@@ -12,37 +31,41 @@ class App extends Component {
    }
 
   loadData = () =>{
-    getSeededData('foo').then(data => {
+    getSeededData().then(data => {
       console.info("seeded data...", data[0]);
       const person = data[0];
       this.setState({ person: person })
     });
   };
 
-  // componentWillMount() {
-  //   getSeededData('foo').then(data => {
-  //     console.info("seeded data...", data[0]);
-  //     const person = data[0];
-  //     this.setState({ name: `${person.name.first} ${person.name.last}`, email: person.email })
-  //   });
-  // }
+  componentWillMount() {
+    getContacts('dk').then(data => {
+      console.info("getContacts", data);
+      const persons = data;
+      this.setState({ persons: persons })
+    });
+  }
   render() {
-    const { person } = this.state;
+    const { persons } = this.state;
     return (
-      <div className="App">
-        <div>
-          <button
-            onClick={this.loadData}
-          >
-            PRESS YUO!
-          </button>
-        
-          <Details.Name name={person ? person.name : null} />
-          <Details.Phone landline={person ? person.phone : null} />
-          <Details.Phone cell={person ? person.cell : null} />
-          { person ? <Card person={person} /> : null }
+      <MuiThemeProvider muiTheme={muiTheme} >
+        <div className="App">
+          <div>
+            <RaisedButton
+              onClick={this.loadData}
+            >
+              PRESS YUO!
+            </RaisedButton>
+            <div className="list-view">
+            { persons ? 
+                persons.map( (person, idx) => 
+                  <MCard key={idx} person={person} />
+              ) : null
+            }
+            </div>
+          </div>
         </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }

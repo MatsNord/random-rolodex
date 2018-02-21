@@ -1,5 +1,4 @@
 import React from 'react';
-import name from './name/name';
 import * as Details from './details';
 
 const Card = ({person}) => {

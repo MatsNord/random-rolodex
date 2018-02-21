@@ -28,14 +28,9 @@ export const Location = ( {location} ) => (
   </div> : <div> No Location </div>
 );
 
-export const Phone = ( {landline, cell} ) => {
-  const lNbr = landline ? <div>{landline}</div> : null;
-  const cNbr = cell ? <div>{cell}</div> : null;
+export const Phone = ( {phone} ) => {
   return (
-    <div>
-      <div>{lNbr}</div>
-      <div>{cNbr}</div>
-    </div>
+      <span>{phone}</span>
     );
 };
 
