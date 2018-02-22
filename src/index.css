@@ -1,5 +1,5 @@
-body {
+@import url('https://fonts.googleapis.com/css?family=Monda:400,700|Montserrat');body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Monda', sans-serif;
 }

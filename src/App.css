@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body{
+  font-size: 0.8em;
+}
+
 .row::after {
   content: "";
   clear: both;
@@ -13,13 +17,13 @@
   width: 100%;
 }
 
-html {
-  font-family: "Lucida Sans", sans-serif;
-}
 .header {
-  background-color: #c65aca;
+  border-radius: 0.2em;
+  background-color: #51adc4;
   color: #ffffff;
-  padding: 0.5em;
+  padding: 0.3em 0.5em 0.3em 0.7em;
+  margin: 0.3em;
+  box-shadow: 1px 2px rgb(201, 212, 212);
 }
 .header h1 {
   font-size: larger;  
@@ -55,10 +59,25 @@ html {
   padding: 15px;
 }
 
-div.info, div.picture {
+div.info {
   display: inline-block;
-  margin-left: 5px;
+  margin-left: 4px;
   vertical-align: middle 
+}
+
+div.picture {
+  margin-left: 6px;
+  display: inline-block;
+  vertical-align: middle 
+}
+
+.picture img {
+  position: relative;
+  left: -4px;
+  border: 1px solid rgb(213, 241, 239);
+  border-radius: 0.1em;
+  padding: 3px;
+  box-shadow: 2px 3px rgb(213, 209, 214);
 }
 
 .info-text {
@@ -106,8 +125,9 @@ div.info, div.picture {
 
 .card{
   border: thin solid lightgray;
+  background-color: rgb(244, 237, 245);
   border-radius: 3px;
-  padding: 3px;
-  margin: 5px;
+  padding: 0.3em;
+  margin: 0.3em;
   border-style: outset;
 }

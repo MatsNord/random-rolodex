@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {getSeededData, getContacts} from './../api';
-import * as Details from './../components/contact/details';
+import {getContacts} from './../api';
 import Card from './../components/contact/card';
 
 class Contacts extends Component {
@@ -12,7 +11,7 @@ class Contacts extends Component {
   // An convienent API call, remove when not needed for dev.
   loadData = () => {
     getContacts().then(data => {
-      console.info("seeded data...", data[0]);
+      console.info('seeded data...', data[0]);
       const persons = data;
       this.setState({persons: persons})
     });
@@ -22,7 +21,7 @@ class Contacts extends Component {
    // This API call may or should be moved to a Redux implementation
    // For now as the App only has two views, and no mutations of data, it will be sufficient
     getContacts().then(data => {
-      console.info("seeded data...", data[0]);
+      console.info('seeded data...', data[0]);
       const persons = data;
       this.setState({persons: persons})
     });
@@ -38,7 +37,7 @@ class Contacts extends Component {
             PRESS YUO!
           </button>
         </div>
-        <div class="items">
+        <div className="items">
           {persons.map((person, idx) => <Card person={person}/>)}
         </div>
       </div>

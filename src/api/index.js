@@ -9,7 +9,7 @@ export const getSeededData = ( (seed = 'foobar') => {
  *  
  * @param {seed} seed is used to get a specific data set. It defaults to foobar
  */
-  console.info("seeded data called");
+  console.info('seeded data called');
   
   return fetch(`https://randomuser.me/api?seed=${seed}`)
     .then( response => response.json() )
@@ -24,7 +24,7 @@ export const getContacts = ( (seed = 'foobar') => {
  * @param {seed} seed is used to get a specific data set. It defaults to foobar
  */
   const resultCount = 10;
-  console.info("seeded getContacts called");
+  console.info('seeded getContacts called');
   
   return fetch(`https://randomuser.me/api?results=${resultCount}&seed=${seed}`)
     .then( response => response.json() )
