@@ -1,15 +1,15 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Contacts from '../containers/contacts';
-import { Link } from 'react-router-dom';
-
 
 const ToolBar = () => (
-  <div><Link to='/contacts'>Search</Link></div>
+  <div> Contacts app Toolbar 
+    <div><Link to='/contacts/becky.sims@example.com'>becky</Link></div>
+  </div>
 );
 const ContactsView = () => {
   return(
     <div>
-    <Link to='/contacts'>Schedule</Link>
       <ToolBar />
       <Contacts />
     </div>

@@ -4,8 +4,9 @@ import InfoItem from './info/infoItem';
 import EmailItem  from './info/emailItem';
 import Styles from './card.css'
 
-const Card = ({person}) => {
+const Card = ({person, fullInfo}) => {
   
+  console.info('FullInfo..., ', fullInfo)
   // TODO: Create utility/component for date formatting
   const dob = person.dob.substring(0,10);
   const registered = person.registered.substring(0,10);
