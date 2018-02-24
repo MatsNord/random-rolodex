@@ -1,8 +1,15 @@
+:root {
+  --toolbar-height: 64px;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body{
+  height: 100vh;
+  margin:0;
+  padding:0;
   font-size: 0.8em;
   min-width: 240px;
 }
@@ -77,7 +84,11 @@ div.info {
 div.picture {
   margin-left: 6px;
   display: inline-block;
-  vertical-align: middle 
+  vertical-align: middle;
+}
+
+div.picture.full-view {
+  display: block;
 }
 
 .picture img {
@@ -124,6 +135,16 @@ div.picture {
   .col-12 {width: 100%;}
 }
 
+/* App */
+
+.app-header {
+  height: 32px;
+  position:fixed;
+  background-color: darkslategray;
+  z-index: 100;
+  width: 100vw;
+  height: 42px;
+}
 /* Components */
 .name, .phone {
   display: inline-block;
@@ -134,9 +155,34 @@ div.picture {
 
 .card{
   border: thin solid lightgray;
-  background-color: rgb(244, 237, 245);
+  background-color: rgba(244, 237, 245, 0.6);
   border-radius: 3px;
   padding: 0.3em;
   margin: 0.3em;
   border-style: outset;
+}
+
+.card.full-height {
+  height: calc(100vh - 48px);
+}
+
+
+.loader.centered {
+  position: absolute; /* or absolute */
+  top: 50%;
+  left: 50%;
+  margin-top: -50px; 
+  margin-left: -50px;
+  border: 16px solid rgb(200, 163, 236);
+  border-radius: 50%;
+  border-top: 16px solid  rgb(185, 81, 211);
+  border-bottom: 16px solid rgb(185, 81, 211);
+  width: 100px;
+  height: 100px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
