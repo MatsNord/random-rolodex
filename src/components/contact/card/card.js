@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Name from './name/name';
-import InfoItem from './info/infoItem';
-import EmailItem  from './info/emailItem';
+import Name from './../name/name';
+import InfoItem from './../info/infoItem';
+import EmailItem  from './../info/emailItem';
 import Styles from './card.css'
 
 const Card = ({person, fullInfo}) => {  
@@ -13,9 +13,18 @@ const Card = ({person, fullInfo}) => {
   return (
     <div className={`card ${fullInfo ? 'full-height' : ''}`}>
       <div className={`header ${fullInfo ? '' : ' lower'}`}>
-        <h1><Name className={Styles.name} name={person.name.first} /> <Name className={Styles.name} name={person.name.last} /> </h1>
+        <h1><Name className={Styles.name} name={person.name.first} /> <Name className={Styles.name} name={person.name.last} />
+        
+        { !fullInfo &&
+        <Link to={`/contacts/${person.email}`}> 
+          <span className="details-nav">
+            <i class="material-icons">folder_open</i>
+          </span>
+        </Link> 
+      }
+        </h1>
       </div>
-      <div className="row">
+      <div className="row card-content">
         <div className={`col-2 picture ${fullInfo ?  'full-view' : ''}`}>
           <img src={person.picture[imgSize]  } alt="" />
         </div>
@@ -45,17 +54,14 @@ const FullInfo = ({person}) => {
 )};
 
 const ListInfo = ({person}) => {
-  const dob = formatDate(person.dob);
   const registered = formatDate(person.registered);
   return (
-    <Link to={`/contacts/${person.email}`}>
       <div className="col-9 info info-block">
         <InfoItem infoText="Title" info={person.name.title} />
         <InfoItem infoText="Phone" info={person.phone} />
         <InfoItem infoText="Cell phone" info={person.cell} />
         <InfoItem infoText="Email" info={person.email} />
       </div>
-    </Link>
 )};
 
 const formatDate = (str) => str.substring(0,10);

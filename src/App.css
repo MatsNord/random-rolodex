@@ -2,6 +2,8 @@
   --toolbar-height: 64px;
 }
 
+
+
 * {
   box-sizing: border-box;
 }
@@ -26,59 +28,35 @@ body{
 }
 
 .header {
-  border-radius: 0.2em;
   background-color: #51adc4;
   color: #ffffff;
   padding: 0.1em 0.5em 0.1em 0.7em;
-  margin: 0.3em;
-  box-shadow: 1px 2px rgb(201, 212, 212);
-}
+  border-bottom: thin solid lightgrey;
+  margin-bottom: 30px;
+  }
 .header h1 {
+  padding-left: 25px;
   font-size: x-large;  
 }
 
-.lower.header {
-  border-radius: 0.2em;
+.details-nav i{
+  color: white;
+  float: right;
+  margin-right: 12px;
+  line-height: 18px;
+  vertical-align: bottom;
 }
+
 
 .lower.header h1{
   font-size: larger;
 }
-.menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-.menu li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #33b5e5;
-  color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-.menu li:hover {
-  background-color: #0099cc;
-}
-.aside {
-  background-color: #33b5e5;
-  padding: 15px;
-  color: #ffffff;
-  text-align: center;
-  font-size: 14px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-.footer {
-  background-color: #0099cc;
-  color: #ffffff;
-  text-align: center;
-  font-size: 12px;
-  padding: 15px;
-}
 
 div.info {
-  display: inline-block;
-  margin-left: 4px;
-  vertical-align: middle 
+    display: inline-block;
+    margin-left: 4px;
+    vertical-align: top;
+    line-height: 1.6;
 }
 
 div.picture {
@@ -89,16 +67,25 @@ div.picture {
 
 div.picture.full-view {
   display: block;
+
 }
 
 .picture img {
-  position: relative;
-  left: -4px;
-  border: 1px solid rgb(213, 241, 239);
-  border-radius: 0.1em;
-  padding: 3px;
-  box-shadow: 2px 3px rgb(213, 209, 214);
+  border: 0px solid rgb(213, 241, 239);
+  border-radius: 36px;
+  padding: 0px;
+  box-shadow: 0px 0px rgb(213, 209, 214);
+  margin-bottom: 20px;
 }
+
+div.picture.full-view img {
+  border-radius: 0;
+  border: 0px solid rgb(213, 241, 239);
+  padding: 0px;
+  box-shadow: 0px 0px rgb(213, 209, 214);
+  margin-bottom: 50px;
+}
+
 
 .info-text {
   width: 90px;
@@ -154,12 +141,12 @@ div.picture.full-view {
 }
 
 .card{
-  border: thin solid lightgray;
-  background-color: rgba(244, 237, 245, 0.6);
-  border-radius: 3px;
-  padding: 0.3em;
-  margin: 0.3em;
-  border-style: outset;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin: 20px 20px 40px 20px;
+  border-bottom: thin solid gray;
+}
+.card-content {
+  padding: 30px;
 }
 
 .card.full-height {

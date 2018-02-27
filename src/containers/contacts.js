@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { Switch, Route } from 'react-router-dom';
 import {getContacts} from './../api';
-import Card from './../components/contact/card';
+import Card from './../components/contact/card/card';
+import PersonCard from './../components/contact/card/person-card';
 import { withRouter } from 'react-router-dom';
+
 
 class Contacts extends Component {
   // Binding the state to the instance. It works as using a contructor
@@ -96,10 +98,5 @@ const PersonList = ({persons}) => (
       { persons ? persons.map((person, idx) => <Card key={idx} person={person}/>) : null }
     </div>);
 
-const PersonCard = ({person}) => (
-  <div className="items">
-    <Card person={person} fullInfo />
-  </div>
-);
 
 export default withRouter(Contacts);
