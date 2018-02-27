@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter} from 'react-router-dom';
 import {getContacts} from './../api';
 import Card from './../components/contact/card/card';
 import PersonCard from './../components/contact/card/person-card';
-import { withRouter } from 'react-router-dom';
+import PersonList from './../components/contact/card/person-list';
+import FullInfo from './../components/contact/card/full-info';
 
 
 class Contacts extends Component {
@@ -12,7 +13,7 @@ class Contacts extends Component {
     persons: undefined
   };
 
-  filterLisHandler(event){
+  filterListHandler= (event) => {
     var updatedList = this.state.persons;
     updatedList = updatedList.filter(function(item){
       return item.name.first.toLowerCase().search(
@@ -34,7 +35,7 @@ class Contacts extends Component {
     this.setState({persons: updatedList});
   };
 
-  sortedListHandler(event) {
+  sortedListHandler = (event) => {
       var updatedList = this.state.persons;
       if (this.sortBox.checked) {
         var op = '<';
@@ -79,7 +80,7 @@ class Contacts extends Component {
             <Route 
               exact
               path='/contacts'
-              render={(props) => <PersonList {...props} persons={persons} />}
+              render={(props) => <PersonList {...props} persons={persons} filter={this.filterListHandler} order={this.sortedListHandler}/>}
             />
             <Route 
               exact 
@@ -92,11 +93,5 @@ class Contacts extends Component {
     );
   }
 }
-
-const PersonList = ({persons}) => (
-    <div className="items"> 
-      { persons ? persons.map((person, idx) => <Card key={idx} person={person}/>) : null }
-    </div>);
-
 
 export default withRouter(Contacts);
