@@ -1,16 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import Contacts from '../containers/contacts';
 
-const ToolBar = () => (
-  <div> Contacts app Toolbar 
-    <div><Link to='/contacts/becky.sims@example.com'>becky</Link></div>
-  </div>
-);
 const ContactsView = () => {
   return(
     <div>
-      <ToolBar />
+      <div className="nav-toolbar">
+        <NavLink className="bread-crumb"  exact to='/contacts'>Home</NavLink>
+      </div>
       <Contacts />
     </div>
   );
