@@ -1,12 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Name from './../name/name';
-import InfoItem from './../info/infoItem';
-import EmailItem  from './../info/emailItem';
 import FullInfo from './full-info';
 import ListInfo from './list-info';
-import Styles from './card.css';
-
+import './card.css';
 
 
 const Card = ({person, fullInfo}) => {  
@@ -17,7 +14,7 @@ const Card = ({person, fullInfo}) => {
   return (
     <div className={`card ${fullInfo ? 'full-height' : ''}`}>
       <div className={`header ${fullInfo ? '' : ' lower'}`}>
-        <h1><Name className={Styles.name} name={person.name.first} /> <Name className={Styles.name} name={person.name.last} />
+        <h1><Name  name={person.name.first} /> <Name name={person.name.last} />
         
         { !fullInfo &&
         <Link to={`/contacts/${person.email}`}> 

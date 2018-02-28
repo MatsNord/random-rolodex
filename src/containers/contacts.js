@@ -1,23 +1,49 @@
 import React, {Component} from 'react';
 import { Switch, Route, withRouter} from 'react-router-dom';
 import {getContacts} from './../api';
-import Card from './../components/contact/card/card';
 import PersonCard from './../components/contact/card/person-card';
 import PersonList from './../components/contact/card/person-list';
-import FullInfo from './../components/contact/card/full-info';
+import Loader from './../components/loader/loader';
 
-const asc = (a, b) => a.name.last < b.name.last || a.name.first < b.name.first;
-const desc = (a, b) => a.name.last > b.name.last || a.name.first > b.name.first;
 
+// This implementation of sort functions are too trivial, and could be more sofisticated
+// as it contains a lot of code duplications
+const sortAsc = (a, b) => {
+  const o1 = a.name.last.toLowerCase();
+  const o2 = b.name.last.toLowerCase();
+  const p1 = a.name.first.toLowerCase();
+  const p2 = b.name.first.toLowerCase();
+  if (o1 < o2) return -1;
+  if (o1 > o2) return 1;
+  if (p1 < p2) return -1;
+  if (p1 > p2) return 1;
+  return 0;
+}
+
+const sortDesc = (a, b) => {
+  const o1 = a.name.last.toLowerCase();
+  const o2 = b.name.last.toLowerCase();
+  const p1 = a.name.first.toLowerCase();
+  const p2 = b.name.first.toLowerCase();
+  if (o1 < o2) return 1;
+  if (o1 > o2) return -1;
+  if (p1 < p2) return 1;
+  if (p1 > p2) return -1;
+  return 0;
+}
 
 
 class Contacts extends Component {
   // Binding the state to the instance. It works as using a contructor
+  // I use a "copy" of the state here, to do the soring
+  // It's actually only copies of the refrenses, so no extra data is loaded. 
   state = {
     persons: undefined,
-    backData: undefined
+    backData: undefined,
+    sortOrder: sortAsc
   };
 
+  // Use ES6 "lambda binding"
   filterListHandler = (event) => {
     var updatedList = this.state.backData;
     updatedList = updatedList.filter(function(item){
@@ -26,42 +52,23 @@ class Contacts extends Component {
           || item.name.last.toLowerCase().search(
           event.target.value.toLowerCase()) !== -1;
     });
-       
-    this.setState({persons: updatedList});
+        
+    this.setState({persons: [...updatedList]});
   };
 
+  // Use ES6 "lambda binding"
   sortedListHandler = (event) => {
-      var updatedList = this.state.backData;
-        if (event.target.checked) {
-        var op = '<';
-        updatedList = updatedList.sort( asc );
-      } else {
-        updatedList = updatedList.sort( desc );
-      }
-    this.setState({persons: updatedList});
+      const sortCb = event.target.checked ? sortDesc : sortAsc;
+      var updatedList = this.state.backData.sort(sortCb);
+      this.setState({persons: [...updatedList], sortOrder: sortCb});
    };
 
-  // An convienent API call, remove when not needed for dev.
-  loadData = () => {
-    getContacts().then(data => {
-      console.info('seeded data...', data[0]);
-      const persons = data;
-      this.setState({persons: persons, backData: persons})
-    });
-  };
-
-  componentWillMount() {
-   // This API call may or should be moved to a Redux implementation
-   // For now as the App only has two views, and no mutations of data, it will be sufficient
-    getContacts().then(data => {
-      console.info('seeded data...', data[0]);
-      const persons = data;
-      this.setState({persons: persons, backData: persons})
-    });
-  };
-
   componentDidMount(){
-    console.log('Did mount...', this.props);
+    getContacts().then(data => {
+      const sortCB = this.state.sortOrder;
+      const persons = data.sort(sortCB);
+      this.setState({persons: [...persons], backData: [...persons]})
+    });
   }
 
   render() {
@@ -82,7 +89,7 @@ class Contacts extends Component {
               render={({match}) => <PersonCard person={ persons.find( person => person.email === match.params.id )} />}
             />
           </Switch>
-        ): <div className="loader centered"/> }
+        ): ( <Loader> <div className="loader center" /></Loader> ) }
       </div>
     );
   }
