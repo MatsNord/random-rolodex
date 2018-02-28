@@ -1,10 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import ContactsView from '../views/contacts';
+import StartView  from './../views/start'
+import ContactsView from './../views/contacts';
 
 const Main = () => (
   <main>
     <Switch>
+      <Route exact path='/' component={StartView}/>
       <Route path='/contacts' component={ContactsView}/>
     </Switch>
   </main>
