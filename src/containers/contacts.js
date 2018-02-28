@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Switch, Route, withRouter} from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 import {getContacts} from './../api';
 import PersonCard from './../components/contact/card/person-card';
 import PersonList from './../components/contact/card/person-list';
@@ -95,4 +95,4 @@ class Contacts extends Component {
   }
 }
 
-export default withRouter(Contacts);
+export default Contacts;

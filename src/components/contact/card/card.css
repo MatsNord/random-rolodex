@@ -2,8 +2,9 @@
 .card{
   background-color: rgba(0, 0, 0, 0.05);
   border-bottom: thin solid gray;
-  margin: 0;  
-  width: 100%;
+  margin: 20px 20px 10px 20px;  
+  width: 96%;
+  width: 96%;
 }
 
 @media only screen and (min-width: 600px) {
@@ -23,8 +24,6 @@
 .card-content {
   padding: 30px;
 }
-
-@media 
 
 .card.full-height {
   min-height: calc(100vh - 128px);
